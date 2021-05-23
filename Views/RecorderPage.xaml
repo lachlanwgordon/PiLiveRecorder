@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns="http://xamarin.com/schemas/2014/forms"
+  x:Class="PiLiveRecorder.Views.RecorderPage">
+    <Grid RowDefinitions="Auto,*,*" ColumnDefinitions="*,*,*">
+       <Label Text="Live Pi Recorder" Grid.ColumnSpan="3"/>
+       <Label Text="{Binding Status}" Grid.ColumnSpan="3" Grid.Row="1"/>
+       <Button BackgroundColor="Red" Text="Record" Grid.Row="2" Command="{Binding RecordCommand}" />
+       <Button BackgroundColor="Black" Text="Stop" Grid.Column="1" Grid.Row="2"/>
+       <Button BackgroundColor="Green" Text="Play" Grid.Column="2" Grid.Row="2"/>
+     </Grid>
+</ContentPage>

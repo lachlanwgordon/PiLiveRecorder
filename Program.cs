@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Ooui.Forms;
 using Ooui;
 using Label = Xamarin.Forms.Label;
+using PiLiveRecorder.Views;
 
 namespace PiLiveRecorder
 {
@@ -12,20 +13,9 @@ namespace PiLiveRecorder
         {
             Console.WriteLine("Hello World!");
             Forms.Init();
-            UI.Host = "10.1.1.155";
-            var page = new ContentPage();
-            var content = new StackLayout
-            {
-                Children = 
-                {
-                    new Label{Text = "hellooww"}
-                }
-            };
-            page.Content = content;
+            UI.Host = "10.1.1.199";
 
-            var element = page.GetOouiElement();
-
-            UI.Publish("/", element);
+            UI.Publish("/", x => new RecorderPage().GetOouiElement());
 
             Console.ReadLine();
         }
