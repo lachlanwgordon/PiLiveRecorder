@@ -6,6 +6,8 @@ namespace PiLiveRecorder.Services
 {
     public class ALSAProcessEngine : IRecordingEngine
     {
+        Process process;
+
         public Task Play()
         {
             LoggingService.Log("Engine started playing");
@@ -17,12 +19,12 @@ namespace PiLiveRecorder.Services
         {
             LoggingService.Log("Engine started recording");
 
-            var process = new Process
+            process = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "arecord",
-                    Arguments = "-f s32_LE -c 18 -r 48000 -D hw:2,0 -t wav test.wav",
+                    Arguments = "-f s32_LE -c 18 -r 48000 -D hw:2,0 -t wav test2.wav",
                     UseShellExecute = false,
                 }
             };
@@ -35,6 +37,8 @@ namespace PiLiveRecorder.Services
         public Task Stop()
         {
             LoggingService.Log("Engine stop ");
+            process.Close();
+
             return Task.CompletedTask;
         }
     }
