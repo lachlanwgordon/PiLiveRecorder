@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=PiRecorder
+Comment=Live recorder on the pi
+Icon=/usr/share/pixmaps/openbox.xpm
+Exec=bash /home/pi/Projects/PiLiveRecorder/run.sh
+Type=Application
+Encoding=UTF-8
+Terminal=true
+Categories=None;
+X-KeepTerminal=true

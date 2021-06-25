@@ -17,14 +17,14 @@ namespace PiLiveRecorder.Services
 
         public Task Record()
         {
-            LoggingService.Log("Engine started recording");
+            LoggingService.Log("+++Engine started recording");
 
             process = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "arecord",
-                    Arguments = "-f s32_LE -c 18 -r 48000 -D hw:2,0 -t wav test2.wav",
+                    Arguments = "-f s32_LE -c 18 -r 48000 -D hw:2,0 -t wav 3.wav",
                     UseShellExecute = false,
                 }
             };
@@ -37,7 +37,7 @@ namespace PiLiveRecorder.Services
         public Task Stop()
         {
             LoggingService.Log("Engine stop ");
-            process.Close();
+            process.Kill();
 
             return Task.CompletedTask;
         }
