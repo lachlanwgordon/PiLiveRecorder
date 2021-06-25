@@ -4,6 +4,7 @@ using System.Windows.Input;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using PiLiveRecorder.Services;
+using Xamarin.Forms;
 
 namespace PiLiveRecorder.ViewModels
 {
@@ -16,11 +17,19 @@ namespace PiLiveRecorder.ViewModels
             set => SetProperty(ref status, value);
         }
         public ObservableRangeCollection<string> Logs => LoggingService.Logs;
-        public IRecordingEngine Engine = new ALSAProcessEngine();
+        public IRecordingEngine Engine;
+        public LoggingService LoggingService;
 
         public ICommand RecordCommand => new AsyncCommand(ExecuteRecordCommand);
         public ICommand PlayCommand => new AsyncCommand(ExecutePlayCommand);
         public ICommand StopCommand => new AsyncCommand(ExecuteStopCommand);
+
+        public RecorderPageViewModel()
+        {
+            LoggingService = DependencyService.Get<LoggingService>();
+            Engine = DependencyService.Get<IRecordingEngine>();
+        }
+
 
         private async Task ExecutePlayCommand()
         {

@@ -5,6 +5,7 @@ using Ooui;
 using Label = Xamarin.Forms.Label;
 using PiLiveRecorder.Views;
 using System.Diagnostics;
+using PiLiveRecorder.Services;
 
 namespace PiLiveRecorder
 {
@@ -14,6 +15,10 @@ namespace PiLiveRecorder
         {
             Console.WriteLine("Hello World!");
              Forms.Init();
+
+            DependencyService.RegisterSingleton<LoggingService>(new LoggingService());
+            DependencyService.RegisterSingleton<IRecordingEngine>(new ALSAProcessEngine());
+
              UI.Host = "10.1.1.155";
 
              UI.Publish("/", x => new RecorderPage().GetOouiElement());

@@ -2,11 +2,18 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
+using Xamarin.Forms;
+
 namespace PiLiveRecorder.Services
 {
     public class ALSAProcessEngine : IRecordingEngine
     {
         Process process;
+        LoggingService LoggingService;
+        public ALSAProcessEngine()
+        {
+            LoggingService = DependencyService.Get<LoggingService>();
+        }
 
         public Task Play()
         {
